@@ -1,9 +1,17 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, waitFor } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("<App /> tests", () => {
+    it("renders <App />", () => {
+        render(<App />);
+    });
+
+    it("renders todo title", async () => {
+        const { getByText, debug } = render(<App />);
+        const titleElement = await waitFor(() => getByText(/My todo list/i));
+        expect(titleElement).toBeInTheDocument();
+
+        // debug();
+    });
 });
