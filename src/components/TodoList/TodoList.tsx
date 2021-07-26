@@ -1,20 +1,13 @@
-import React from "react";
-
+import * as React from "react";
+import TodoItem, { TodoItemType } from "../TodoItem/TodoItem";
 export interface TodoListType {
-    todos: TodoType[];
-}
-
-export interface TodoType {
-    userId: number;
-    id: number;
-    title: string;
-    completed: boolean;
+    todos: TodoItemType[];
 }
 
 const TodoList = ({ todos }: TodoListType) => (
-    <div>
+    <div className="h-50 last:border-b-0 bg-white rounded-lg shadow-md">
         {todos.map((todo) => (
-            <div key={todo.id}>{todo.title}</div>
+            <TodoItem key={todo.id} todo={todo} />
         ))}
     </div>
 );
