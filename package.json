@@ -11,6 +11,7 @@
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "autoprefixer": "10.x",
+    "classnames": "^2.3.1",
     "cross-env": "7.x",
     "delay-cli": "^1.1.0",
     "graphql": "^15.5.1",
@@ -22,6 +23,7 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "tailwindcss": "2.x",
+    "tailwindcss-border-gradients": "^2.0.3",
     "typescript": "4.x",
     "urql": "^2.0.4"
   },
@@ -51,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
     "msw": "^0.33.0"
   }
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useQuery } from "urql";
-import { TodoItemType } from "./components/TodoItem/TodoItem";
+import TodoInput from "./components/TodoInput/TodoInput";
+import { TodoType } from "./components/TodoItem/TodoItem";
 import TodoList from "./components/TodoList/TodoList";
 
 const TodosQuery = `
@@ -17,7 +18,7 @@ query TodosQuery {
 
 interface TodoResponse {
     todos: {
-        data: TodoItemType[];
+        data: TodoType[];
     };
 }
 
@@ -25,7 +26,6 @@ function App() {
     const [result] = useQuery<TodoResponse>({
         query: TodosQuery,
     });
-
     const { data, fetching, error } = result;
 
     if (fetching) return <p>Loading...</p>;
@@ -53,11 +53,10 @@ function App() {
                             </svg>
                         </button>
                     </div>
-                    <input
-                        className="focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent w-full h-16 px-5 my-6 rounded-lg shadow-md"
-                        placeholder="Add what to do..."
-                    />
-                    {<TodoList todos={data?.todos?.data ?? []}></TodoList>}
+                    <TodoInput />
+                    <ul>
+                        <TodoList todoes={data?.todos?.data ?? []} />
+                    </ul>
                 </div>
             </div>
         </div>

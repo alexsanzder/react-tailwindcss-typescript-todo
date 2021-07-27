@@ -1,15 +1,31 @@
 import * as React from "react";
-import TodoItem, { TodoItemType } from "../TodoItem/TodoItem";
+import TodoItem, { TodoType } from "../TodoItem/TodoItem";
 export interface TodoListType {
-    todos: TodoItemType[];
+    todoes: TodoType[];
 }
 
-const TodoList = ({ todos }: TodoListType) => (
-    <div className="h-50 last:border-b-0 bg-white rounded-lg shadow-md">
-        {todos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} />
-        ))}
-    </div>
-);
+const TodoList = ({ todoes }: TodoListType) => {
+    const [todos, setTodos] = React.useState(todoes);
+    const toggleTodo = (selectedTodo: TodoType) => {
+        const newTodos = todos?.map((todo: TodoType) => {
+            if (todo === selectedTodo) {
+                return {
+                    ...todo,
+                    completed: !todo.completed,
+                };
+            }
+            return todo;
+        });
+        setTodos(newTodos);
+    };
+
+    return (
+        <li className="h-50 last:border-b-0 bg-white rounded-lg shadow-md">
+            {todos.map((todo) => (
+                <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} />
+            ))}
+        </li>
+    );
+};
 
 export default TodoList;
